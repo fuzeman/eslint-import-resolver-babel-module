@@ -1,4 +1,5 @@
 const path = require('path');
+const process = require('process');
 const resolve = require('resolve');
 const pkgUp = require('pkg-up');
 const targetPlugin = require('babel-plugin-module-resolver').default;
@@ -73,6 +74,12 @@ exports.resolve = (source, file, opts) => {
       }),
       { root: [], alias: {}, cwd: projectRootDir },
     );
+
+    if(options.cwd === 'process') {
+      pluginOpts.cwd = process.cwd();
+    } else if(options.cwd) {
+      pluginOpts.cwd = options.cwd;
+    }
 
     const finalSource = stripWebpack(source);
     const src = resolvePath(finalSource, file, pluginOpts);
