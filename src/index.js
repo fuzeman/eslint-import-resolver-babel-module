@@ -14,9 +14,7 @@ function getPlugins(file, target) {
     });
 
     return result.plugins.filter((plugin) => {
-      const plug = OptionManager.memoisedPlugins.find(item => item.plugin === plugin[0]);
-
-      return plug && plug.container === target;
+      return plugin[0].key === 'module-resolver';
     });
   } catch (err) {
     // This error should only occur if something goes wrong with babel's
