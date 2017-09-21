@@ -2,8 +2,8 @@ const path = require('path');
 const process = require('process');
 const resolve = require('resolve');
 const pkgUp = require('pkg-up');
-const targetPlugin = require('babel-plugin-module-resolver').default;
-const resolvePath = require('babel-plugin-module-resolver').resolvePath;
+const targetPlugin = require('@fuzeman/babel-plugin-module-resolver').default;
+const resolvePath = require('@fuzeman/babel-plugin-module-resolver').resolvePath;
 const OptionManager = require('babel-core').OptionManager;
 
 function getPlugins(file, target) {
