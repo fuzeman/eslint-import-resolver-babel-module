@@ -6,6 +6,15 @@ const targetPlugin = require('@fuzeman/babel-plugin-module-resolver').default;
 const resolvePath = require('@fuzeman/babel-plugin-module-resolver').resolvePath;
 const OptionManager = require('babel-core').OptionManager;
 
+
+const pluginName = '@fuzeman\\babel-plugin-module-resolver';
+const pluginPath = pluginName + '\\lib\\index.js';
+
+const pluginKeys = [
+  '@fuzeman\\module-resolver',
+  pluginName
+];
+
 function getPlugins(file, target) {
   try {
     const manager = new OptionManager();
@@ -15,7 +24,19 @@ function getPlugins(file, target) {
     });
 
     return result.plugins.filter((plugin) => {
-      return plugin[0].key === 'module-resolver';
+      let key = plugin[0].key;
+      
+      // Match by key
+      if(pluginKeys.indexOf(key) >= 0) {
+        return true;
+      }
+
+      // Match by path (Babel v7+)
+      if(key.indexOf(pluginPath) === key.length - pluginPath.length) {
+        return true;
+      }
+
+      return false;
     });
   } catch (err) {
     // This error should only occur if something goes wrong with babel's
