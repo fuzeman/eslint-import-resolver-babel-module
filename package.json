@@ -48,7 +48,7 @@
   },
   "peerDependencies": {
     "@fuzeman/babel-plugin-module-resolver": ">3.0.0-beta",
-    "babel-core": "^6.0.0"
+    "babel-core": "6 || 7 || ^7.0.0-alpha || ^7.0.0-beta || ^7.0.0-rc"
   },
   "scripts": {
     "lint": "eslint src test",
